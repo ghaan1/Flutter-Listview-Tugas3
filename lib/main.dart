@@ -2,146 +2,82 @@ import 'package:flutter/material.dart';
 import 'package:tugas3/main2.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
-
+//PARAMATER
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final text = [
+    'Test 1',
+    'Test 2',
+    'Test 3',
+    'Test 4',
+    'Test 5',
+  ];
+
+  final gambar = [
+    '1.jpeg',
+    '1.jpeg',
+    '1.jpeg',
+    '1.jpeg',
+    '1.jpeg',
+  ];
+
+  final tanggal = [
+    'Blitar , Agt 20 2021',
+    'Blitar , Agt 21 2021',
+    'Blitar , Agt 22 2021',
+    'Blitar , Agt 23 2021',
+    'Blitar , Agt 24 2021',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Berita',
       theme: ThemeData(
-      primarySwatch: Colors.red,
+        primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-            final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(   
-        title: Text(widget.title),
-      ),
-      body: 
-        Column(
-          children:  const <Widget>[
-            Button(),
-            BeritaBesar(),
-            Expanded(child: Scroll()),
-          ],
-        ),    
-    );
-  }
-}
-
-class Scroll extends StatelessWidget {
-  const Scroll({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8.0),
-      child: LayoutBuilder(
-        builder: (BuildContext context,
-            BoxConstraints viewportConstraints) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: viewportConstraints.maxHeight,
-              ),
-              child: IntrinsicHeight(
-                child: Column(
-                  children: const <Widget>[
-                    BeritaKecil(),
-                    BeritaKecil(),
-                    BeritaKecil(),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class Button extends StatelessWidget {
-  const Button({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(3.5),
-      margin: const EdgeInsets.all(15),
-      height: 20.5,
-      child:
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                    color: Colors.transparent,
-                  ),
-                ),
-                onPressed: () {
-                },
-                child: const Text('BERITA TERBARU', 
-                  style: TextStyle(
-                    color: Colors.black
-                  ),
-                ),
-              ),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                    color: Colors.transparent,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyApp2()),
-                  );
-                },
-                child: const Text('PERTANDINGAN HARI INI',
-                  style: TextStyle(
-                    color: Colors.black
-                  ),
-                ),
-              ),
-           ],
+      home: 
+      DefaultTabController(
+        length: 2,
+        child: Scaffold(
+        appBar: AppBar(   
+          title: const Text('MyApp'),
+          bottom: const TabBar(
+            tabs: [
+              Text('BERITA'),
+              Text('PERTANDINGAN'),
+            ]
           ),
         ),
+        body: TabBarView(
+          children: <Widget>[ 
+            Column(
+            children: [
+              BeritaBesar(),
+              Expanded(
+                child: ListView.builder(
+                   itemCount: text.length,
+                      itemBuilder: (context, index) {
+                        return BeritaKecil(index);
+                      },              
+                ),
+              )
+            ]
+            ),
+            
+          
+          const Center(
+            child: MyApp2(),
+          )
+          ]
+          )
+        )
+        )
     );
   }
-}
 
-class BeritaBesar extends StatelessWidget {
-  const BeritaBesar({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  BeritaBesar() {
     return Container(
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
@@ -179,15 +115,9 @@ class BeritaBesar extends StatelessWidget {
       ),
     );
   }
-}
 
-class BeritaKecil extends StatelessWidget {
-  const BeritaKecil({
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
+BeritaKecil(int index){
     return Container(
       margin: const EdgeInsets.all(10.0),
       decoration: BoxDecoration(
@@ -198,33 +128,36 @@ class BeritaKecil extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Container(
-                width: 170.7,
-                height: 100, 
-                decoration: BoxDecoration(  
-                  border: Border.all(color: Colors.grey),             
-                    image: const DecorationImage(
-                      alignment: Alignment.center,
-                      fit: BoxFit.fitWidth,
-                      image: AssetImage('assets/images/1.jpeg'),  
-                    ),                    
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 100, 
+                  decoration: BoxDecoration(  
+                    border: Border.all(color: Colors.grey),                                  
+                  ),
+                  child : Image.asset(
+                          'assets/images/' + gambar[index],
+                          alignment: Alignment.center,
+                        fit: BoxFit.fitHeight, 
+                          ),  
                 ),
               ),
               Expanded(
-              child : Container(
-              padding: const EdgeInsets.all(5.0),
-              width: 200,
-              height: 100, 
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey),
-              ),
-                child: const Text("Pique Bilang Wasit Untungkan Madrid, Koeman Tepok Jidat",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 12
-                  ),),
-              ),
+                flex: 2,
+                child: Container(
+                padding: const EdgeInsets.all(5.0),
+                width: 200,
+                height: 100, 
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                ),
+                  child: Text(text[index],
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 12
+                    ),),
+                ),
               ),
             ], 
           ),
@@ -234,10 +167,10 @@ class BeritaKecil extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
               ),
-                child: const Text("Barcelona Feb 13, 2021"),
+                child: Text(tanggal[index]),
               ),
         ],
       ),
     );
-  }
+}
 }

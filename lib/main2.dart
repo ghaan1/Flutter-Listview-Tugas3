@@ -31,13 +31,11 @@ class _MyHomePageState extends State<MyHomePage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(   
-        title: Text(widget.title),
-      ),
+      
       body: 
         ListView(
           children: const <Widget>[
-            Button(),
+            //Button(),
             Pertandingan(),
             Pertandingan(),
             Pertandingan(),
@@ -63,44 +61,42 @@ class Button extends StatelessWidget {
       margin: const EdgeInsets.all(15),
       height: 20.5,
       child:
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                    color: Colors.transparent,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyApp()),
-                  );
-                },
-                child: const Text('BERITA TERBARU', 
-                  style: TextStyle(
-                    color: Colors.black
-                  ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(
+                  color: Colors.transparent,
                 ),
               ),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                    color: Colors.transparent,
-                  ),
-                ),
-                onPressed: () {
-                },
-                child: const Text('PERTANDINGAN HARI INI',
-                  style: TextStyle(
-                    color: Colors.black
-                  ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  MyApp()),
+                );
+              },
+              child: const Text('BERITA TERBARU', 
+                style: TextStyle(
+                  color: Colors.black
                 ),
               ),
-           ],
-          ),
+            ),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: const BorderSide(
+                  color: Colors.transparent,
+                ),
+              ),
+              onPressed: () {
+              },
+              child: const Text('PERTANDINGAN HARI INI',
+                style: TextStyle(
+                  color: Colors.black
+                ),
+              ),
+            ),
+         ],
         ),
     );
   }
@@ -113,102 +109,100 @@ class Pertandingan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        margin: const EdgeInsets.all(10.0),
-        decoration: const BoxDecoration(
-          color: Colors.lightBlueAccent,
-          borderRadius: BorderRadius.all(Radius.circular(50))
-        ),
-        child: 
-        Column(
-          children: <Widget>[    
-            SizedBox(
-              height: 100,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage("https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png"))
-                      ),
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      decoration: const BoxDecoration(
+        color: Colors.lightBlueAccent,
+        borderRadius: BorderRadius.all(Radius.circular(50))
+      ),
+      child: 
+      Column(
+        children: <Widget>[    
+          SizedBox(
+            height: 100,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage("https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png"))
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                    ),
-                      child: const Text("VS", style: 
-                      TextStyle(
-                        fontWeight: FontWeight.bold
-                      ),),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                  ),
+                    child: const Text("VS", style: 
+                    TextStyle(
+                      fontWeight: FontWeight.bold
+                    ),),
+                  ),
+                ),
+                 Expanded(
+                  flex: 2,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage("https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png"))
                     ),
                   ),
-                   Expanded(
-                    flex: 2,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage("https://upload.wikimedia.org/wikipedia/id/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png"))
-                      ),
-                    ),
-                  ),
-                ], 
-              ),
+                ),
+              ], 
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      decoration: const BoxDecoration(
+          ),
+          Container(
+            margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                     borderRadius: BorderRadius.all(Radius.circular(10)),
+                     color: Colors.blue
+                  ),
+                         child: const Text("Manchester City",
+                        textAlign: TextAlign.center,),
+                      ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    decoration: const BoxDecoration(
                        borderRadius: BorderRadius.all(Radius.circular(10)),
                        color: Colors.blue
                     ),
-                           child: const Text("Manchester City",
-                          textAlign: TextAlign.center,),
-                        ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                         borderRadius: BorderRadius.all(Radius.circular(10)),
-                         color: Colors.blue
-                      ),
-                      child: const Text("Manchester City",
-                      textAlign: TextAlign.center,),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(13.0),
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(
-                    width: 2,
+                    child: const Text("Manchester City",
+                    textAlign: TextAlign.center,),
                   ),
                 ),
-              ),
-              child: const Text("Etihad Stadium - Feb 13, 2021",
-                textAlign: TextAlign.center,),
+              ],
             ),
-          ],
-        ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(13.0),
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              border: Border(
+                top: BorderSide(
+                  width: 2,
+                ),
+              ),
+            ),
+            child: const Text("Etihad Stadium - Feb 13, 2021",
+              textAlign: TextAlign.center,),
+          ),
+        ],
       ),
     );
   }
